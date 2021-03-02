@@ -145,7 +145,7 @@ def updateCb(client, callback_query,redis):
       x = 0
       ar.append(a)
       a = []
-    ar.append([InlineKeyboardButton("📣",url="t.me/nbbot")])
+    ar.append([InlineKeyboardButton("📣",url="t.me/zx_xx")])
     kb = InlineKeyboardMarkup(ar)
     Bot("editMessageText",{"chat_id":chatID,"message_id":message_id,"text":go.format("👉🏻",fn1,"🔄",fn2),"disable_web_page_preview":True,"reply_markup":kb})
 
@@ -230,7 +230,7 @@ def updateCb(client, callback_query,redis):
       x = 0
       ar.append(a)
       a = []
-    ar.append([InlineKeyboardButton("📣",url="t.me/nbbot")])
+    ar.append([InlineKeyboardButton("📣",url="t.me/zx_xx")])
     kb = InlineKeyboardMarkup(ar)
     if nextTN == 1:
       e1 = "👉🏻"
