@@ -56,7 +56,7 @@ def updateMsgs(client, message,redis):
         Bot("sendMessage",{"chat_id":chatID,"text":unADD.format(BY,R),"reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
 
   
-  games = {"rps.py":"🧱📃✂️","xo.py":"❌ ⭕️"}
+  games = {"rps.py":"🧱📃✂️","xo.py":"❌ ⭕️","ring.py":"👊🏻💍🖐🏻"}
   if text and re.search("^الالعاب$|^العاب$",text) and not redis.sismember("{}Nbot:gpgames".format(BOT_ID),chatID):
     tx = "🕹꒐ اليك الالعاب المقدمه من (<a href=\"http://t.me/zx_xx\">TshakeTeam</a>)"
     onlyfiles = [f for f in listdir("files") if isfile(join("files", f))]
