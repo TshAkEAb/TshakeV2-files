@@ -4,13 +4,13 @@ from utlis.locks import st,getOR
 from utlis.tg import Bot
 from config import *
 
-from pyrogram import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 import threading, requests, time, random, re, json
 import importlib
 
 from uuid import uuid4
 
-from pyrogram import (
+from pyrogram.types import (
      InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton
 )
 

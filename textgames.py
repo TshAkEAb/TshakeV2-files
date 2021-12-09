@@ -4,13 +4,13 @@ from utlis.locks import st,getOR
 from utlis.tg import Bot
 from config import *
 
-from pyrogram import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 import threading, requests, time, random, re, json
 import importlib
 
 from uuid import uuid4
 
-from pyrogram import (InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton)
+from pyrogram.types import (InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton)
 
 
 def updateMsgs(client, message,redis):
@@ -56,12 +56,13 @@ def updateMsgs(client, message,redis):
 
 
     if message.reply_to_message:
-        if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:fastest".format(BOT_ID),chatID) :
-            Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
-            redis.hdel("{}Nbot:fastest".format(BOT_ID),chatID)
-        if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:reversed".format(BOT_ID),chatID) :
-            Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
-            redis.hdel("{}Nbot:reversed".format(BOT_ID),chatID)
-        if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:different".format(BOT_ID),chatID) :
-            Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
-            redis.hdel("{}Nbot:different".format(BOT_ID),chatID)
+        if message.reply_to_message.from_user:
+            if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:fastest".format(BOT_ID),chatID) :
+                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+                redis.hdel("{}Nbot:fastest".format(BOT_ID),chatID)
+            if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:reversed".format(BOT_ID),chatID) :
+                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+                redis.hdel("{}Nbot:reversed".format(BOT_ID),chatID)
+            if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:different".format(BOT_ID),chatID) :
+                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+                redis.hdel("{}Nbot:different".format(BOT_ID),chatID)
