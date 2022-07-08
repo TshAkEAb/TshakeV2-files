@@ -33,13 +33,13 @@ def updateMsgs(client, message,redis):
         word_list = list(word)
         random.shuffle(word_list)
         W = " ".join(word_list)
-        Bot("sendMessage",{"chat_id":chatID,"text":f"⏺꒐ الاحرف : {W}\nارسل الكلمه بالرد","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+        Bot("sendMessage",{"chat_id":chatID,"text":f"⏺꒐ الاحرف : {W}\nارسل الكلمه بالرد","reply_to_message_id":message.id,"parse_mode":"html","disable_web_page_preview":True})
         redis.hset("{}Nbot:fastest".format(BOT_ID),chatID,word)
 
     if text and re.search("^العكس$",text) and not redis.sismember("{}Nbot:gpgames".format(BOT_ID),chatID):
         word = random.choice(words)
         reversed_word = word [::-1]
-        Bot("sendMessage",{"chat_id":chatID,"text":f"⏺꒐ الكلمه : {reversed_word}\nارسل الكلمه بالرد","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+        Bot("sendMessage",{"chat_id":chatID,"text":f"⏺꒐ الكلمه : {reversed_word}\nارسل الكلمه بالرد","reply_to_message_id":message.id,"parse_mode":"html","disable_web_page_preview":True})
         redis.hset("{}Nbot:reversed".format(BOT_ID),chatID,word)
 
     if text and re.search("^المختلف$",text) and not redis.sismember("{}Nbot:gpgames".format(BOT_ID),chatID):
@@ -51,18 +51,18 @@ def updateMsgs(client, message,redis):
            array.append(emoje_2)
         random.shuffle(array)
         E = "".join(array)
-        Bot("sendMessage",{"chat_id":chatID,"text":f"⏺꒐ {E}\nارسل الايموجي بالرد","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+        Bot("sendMessage",{"chat_id":chatID,"text":f"⏺꒐ {E}\nارسل الايموجي بالرد","reply_to_message_id":message.id,"parse_mode":"html","disable_web_page_preview":True})
         redis.hset("{}Nbot:different".format(BOT_ID),chatID,emoje_1)
 
 
     if message.reply_to_message:
         if message.reply_to_message.from_user:
             if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:fastest".format(BOT_ID),chatID) :
-                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.id,"parse_mode":"html","disable_web_page_preview":True})
                 redis.hdel("{}Nbot:fastest".format(BOT_ID),chatID)
             if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:reversed".format(BOT_ID),chatID) :
-                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.id,"parse_mode":"html","disable_web_page_preview":True})
                 redis.hdel("{}Nbot:reversed".format(BOT_ID),chatID)
             if text and message.reply_to_message.from_user.id == int(BOT_ID) and text == redis.hget("{}Nbot:different".format(BOT_ID),chatID) :
-                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
+                Bot("sendMessage",{"chat_id":chatID,"text":f"🎉꒐ مبروك لقد فزت","reply_to_message_id":message.id,"parse_mode":"html","disable_web_page_preview":True})
                 redis.hdel("{}Nbot:different".format(BOT_ID),chatID)

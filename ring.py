@@ -56,7 +56,7 @@ def updateCb(client, callback_query,redis):
   userFN = callback_query.from_user.first_name
   username = callback_query.from_user.username
   chatID = callback_query.message.chat.id
-  message_id = callback_query.message.message_id
+  message_id = callback_query.message.id
   if re.search("^ring.pyplay$",date):
     start = "🔽꒐ اختر صعوبة اللعبة  "
     kb = InlineKeyboardMarkup([[
