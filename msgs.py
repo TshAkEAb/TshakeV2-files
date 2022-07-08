@@ -30,12 +30,12 @@ def updateMsgs(client, message,redis):
       userFn = getUser.first_name
       BY = "<a href=\"tg://user?id={}\">{}</a>".format(userId,userFn)
       redis.hincrby("{}Nbot:{}:msgs".format(BOT_ID,chatID),userId,msgsCount)
-      Bot("sendMessage",{"chat_id":chatID,"text":f"✅꒐ تم اضافه {msgsCount} الى {userFn}","reply_to_message_id":message.message_id,"parse_mode":"html"})
+      Bot("sendMessage",{"chat_id":chatID,"text":f"✅꒐ تم اضافه {msgsCount} الى {userFn}","reply_to_message_id":message.id,"parse_mode":"html"})
     except Exception as e:
-      Bot("sendMessage",{"chat_id":chatID,"text":r.userNocc,"reply_to_message_id":message.message_id,"parse_mode":"html"})
+      Bot("sendMessage",{"chat_id":chatID,"text":r.userNocc,"reply_to_message_id":message.id,"parse_mode":"html"})
 
 
-  if text == "مسح رسائلي":
+  if text == "مسح رسائلي" :
     redis.hdel("{}Nbot:{}:msgs".format(BOT_ID,chatID),userID)
-    Bot("sendMessage",{"chat_id":chatID,"text":"✅꒐ تم مسح رسائلك","reply_to_message_id":message.message_id,"parse_mode":"html"})
+    Bot("sendMessage",{"chat_id":chatID,"text":"✅꒐ تم مسح رسائلك","reply_to_message_id":message.id,"parse_mode":"html"})
     

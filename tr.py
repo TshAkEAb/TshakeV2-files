@@ -7,8 +7,6 @@ from config import *
 from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 import threading, requests, time, random, re, json
 import importlib
-
-from pyrogram.api.types import InputPeerChat
 def updateMsgs(client, message,redis):
     type = message.chat.type
     userID = message.from_user.id
