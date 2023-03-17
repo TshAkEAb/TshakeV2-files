@@ -25,9 +25,9 @@ def updateMsgs(client, message,redis):
         if int(JsonDate["BOT_ID"]) != int(BOT_ID):
             Bot("editMessageText",{"chat_id":chatID,"text":"عذراً هذه الملف ليس لي ⚠️","message_id":msgID,"disable_web_page_preview":True,"parse_mode":"html"})
             return 0
-        co = len(JsonDate["GP_BOT"])
+        co = len(JsonDate["group"])
         Bot("editMessageText",{"chat_id":chatID,"text":f"تم ايجاد {co} مجموعه في الملف ℹ️","message_id":msgID,"disable_web_page_preview":True,"parse_mode":"html"})
-        for chatID in JsonDate["GP_BOT"].keys():
+        for chatID in JsonDate["group"].keys():
             try:
                 time.sleep(0.1)
                 print(chatID)
@@ -44,7 +44,7 @@ def updateMsgs(client, message,redis):
                         setrank(redis,"admin",userId,chatID,"array")
                     if ad['status'] == "creator":
                         setrank(redis,"malk",userId,chatID,"one")
-                gpDate = JsonDate["GP_BOT"][chatID]
+                gpDate = JsonDate["group"][chatID]
                 if "ASAS" in gpDate:
                     for userId in gpDate["ASAS"]:
                         setrank(redis,"acreator",userId,chatID,"array")
